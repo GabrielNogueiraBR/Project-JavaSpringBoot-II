@@ -1,5 +1,7 @@
 package br.facens.projectjavaspringboot.dto;
 
+import br.facens.projectjavaspringboot.entities.Event;
+
 public class EventDTO {
     
     private Long id;
@@ -17,6 +19,14 @@ public class EventDTO {
         this.description = description;
         this.place = place;
         this.contact = contact;
+    }
+
+    public EventDTO(Event event) {
+        this.id = event.getId();
+        this.name = event.getName();
+        this.description = event.getDescription();
+        this.place = event.getPlace();
+        this.contact = event.getPlace();
     }
 
     public Long getId() {
