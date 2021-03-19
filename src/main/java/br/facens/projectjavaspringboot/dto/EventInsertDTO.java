@@ -33,7 +33,7 @@ public class EventInsertDTO {
     @FutureOrPresent(message = "A data inicial deve ser igual a data atual ou uma data futura.")
     private LocalDate startDate;
 
-    @NotNull
+    @NotNull(message = "O campo 'enDate' deve ser preenchido")
     @Future(message = "O campo 'endDate' deve ser uma data futura")
     private LocalDate endDate;
 
@@ -46,12 +46,10 @@ public class EventInsertDTO {
         return true;
     }
 
-    @NotNull
-    @FutureOrPresent(message = "O campo 'startTime' deve ser um valor valido.")
+    @NotNull(message = "O campo 'startTime' deve ser preenchido")
     private LocalTime startTime;
 
-    @NotNull
-    @Future(message = "O campo 'endTime' deve ser um valor no futuro.")
+    @NotNull(message = "O campo 'endTime' deve ser preenchido")
     private LocalTime endTime;
 
     @NotBlank
