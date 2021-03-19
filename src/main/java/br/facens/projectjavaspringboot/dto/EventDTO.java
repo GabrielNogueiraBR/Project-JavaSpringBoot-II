@@ -8,17 +8,17 @@ public class EventDTO {
     private String name;
     private String description;
     private String place;
-    private String contact;
+    private String emailContact;
     
     public EventDTO() {
     }
 
-    public EventDTO(Long id, String name, String description, String place, String contact) {
+    public EventDTO(Long id, String name, String description, String place, String emailContact) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.place = place;
-        this.contact = contact;
+        this.emailContact = emailContact;
     }
 
     public EventDTO(Event event) {
@@ -26,7 +26,7 @@ public class EventDTO {
         this.name = event.getName();
         this.description = event.getDescription();
         this.place = event.getPlace();
-        this.contact = event.getPlace();
+        this.emailContact = event.getEmailContact();
     }
 
     public Long getId() {
@@ -61,11 +61,11 @@ public class EventDTO {
         this.place = place;
     }
 
-    public String getContact() {
-        return contact;
+    public String getEmailContact() {
+        return emailContact;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setEmailContact(String emailContact) {
+        this.emailContact = emailContact;
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.facens.projectjavaspringboot.dto.EventDTO;
+import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 import br.facens.projectjavaspringboot.entities.Event;
 import br.facens.projectjavaspringboot.repositories.EventRepository;
 
@@ -29,7 +30,7 @@ public class EventService {
         List<EventDTO> listDTO = new ArrayList<>();
 
         for (Event event : list) {
-            EventDTO dto = new EventDTO(event.getId(), event.getName(), event.getDescription(), event.getPlace(), event.getContact());
+            EventDTO dto = new EventDTO(event.getId(), event.getName(), event.getDescription(), event.getPlace(), event.getEmailContact());
             listDTO.add(dto);
         }
 
@@ -40,6 +41,12 @@ public class EventService {
         Optional<Event> opt = repository.findById(id);
         Event event = opt.orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found") );
 
+        return new EventDTO(event);
+    }
+
+    public EventDTO insert(EventInsertDTO insertDto) {
+        Event event = new Event(insertDto);
+        event = repository.save(event);
         return new EventDTO(event);
     }
 }

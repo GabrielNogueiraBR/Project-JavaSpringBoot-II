@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.facens.projectjavaspringboot.dto.EventInsertDTO;
+
 @Entity
 @Table(name="TB_EVENT")
 public class Event implements Serializable{
@@ -26,13 +28,10 @@ public class Event implements Serializable{
     private LocalDate endDate;
     private LocalTime startTime;
     private LocalTime endTime;
-    private String contact;
+    private String emailContact;
     
-    public Event() {
-    }
-
     public Event(Long id, String name, String description, String place, LocalDate startDate, LocalDate endDate,
-            LocalTime startTime, LocalTime endTime, String contact) {
+            LocalTime startTime, LocalTime endTime, String emailContact) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -41,91 +40,86 @@ public class Event implements Serializable{
         this.endDate = endDate;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.contact = contact;
+        this.emailContact = emailContact;
+    }
+    public Event() {
+    }
+
+    public Event(EventInsertDTO insertDto) {
+        this.name = insertDto.getName();
+        this.description = insertDto.getDescription();
+        this.place = insertDto.getPlace();
+        this.startDate = insertDto.getStartDate();
+        this.endDate = insertDto.getEndDate();
+        this.startTime = insertDto.getStartTime();
+        this.endTime = insertDto.getEndTime();
+        this.emailContact = insertDto.getEmailContact();
     }
 
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public String getPlace() {
         return place;
     }
-
     public void setPlace(String place) {
         this.place = place;
     }
-
     public LocalDate getStartDate() {
         return startDate;
     }
-
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
-
     public LocalDate getEndDate() {
         return endDate;
     }
-
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
     public LocalTime getStartTime() {
         return startTime;
     }
-
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
-
     public LocalTime getEndTime() {
         return endTime;
     }
-
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
-    public String getContact() {
-        return contact;
+    public String getEmailContact() {
+        return emailContact;
     }
-
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setEmailContact(String emailContact) {
+        this.emailContact = emailContact;
     }
-
+    
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((contact == null) ? 0 : contact.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((emailContact == null) ? 0 : emailContact.hashCode());
         result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
         result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -135,7 +129,6 @@ public class Event implements Serializable{
         result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
         return result;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -145,15 +138,15 @@ public class Event implements Serializable{
         if (getClass() != obj.getClass())
             return false;
         Event other = (Event) obj;
-        if (contact == null) {
-            if (other.contact != null)
-                return false;
-        } else if (!contact.equals(other.contact))
-            return false;
         if (description == null) {
             if (other.description != null)
                 return false;
         } else if (!description.equals(other.description))
+            return false;
+        if (emailContact == null) {
+            if (other.emailContact != null)
+                return false;
+        } else if (!emailContact.equals(other.emailContact))
             return false;
         if (endDate == null) {
             if (other.endDate != null)
@@ -192,7 +185,7 @@ public class Event implements Serializable{
             return false;
         return true;
     }
-
+    
     
     
 }
