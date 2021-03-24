@@ -1,10 +1,13 @@
 package br.facens.projectjavaspringboot.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,9 +23,15 @@ public class EventService {
     @Autowired
     private EventRepository repository;
 
-    public List<EventDTO> getEvents() {
-       List<Event> list = repository.findAll();
-       return toDTOList(list);
+    public Page<EventDTO> getEvents(
+            PageRequest pageRequest, 
+            String name, 
+            String place,
+            String description
+    ) 
+    {
+            Page<Event> list = repository.findEventPageable(pageRequest, name, place,description);
+            return list.map(event -> new EventDTO(event));
     }
 
     public List<EventDTO> toDTOList(List<Event> list) {
