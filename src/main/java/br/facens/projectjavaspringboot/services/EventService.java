@@ -27,10 +27,11 @@ public class EventService {
             PageRequest pageRequest, 
             String name, 
             String place,
-            String description
+            String description,
+            LocalDate startDate
     ) 
     {
-            Page<Event> list = repository.findEventPageable(pageRequest, name, place,description);
+            Page<Event> list = repository.findEventPageable(pageRequest, name, place,description,startDate);
             return list.map(event -> new EventDTO(event));
     }
 

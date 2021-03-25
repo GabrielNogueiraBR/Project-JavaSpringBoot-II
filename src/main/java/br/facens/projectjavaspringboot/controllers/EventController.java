@@ -2,7 +2,6 @@ package br.facens.projectjavaspringboot.controllers;
 
 import java.net.URI;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -11,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,13 +42,14 @@ public class EventController {
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
         @RequestParam(value = "name", defaultValue = "") String name,
         @RequestParam(value = "place", defaultValue = "") String place,
-        @RequestParam(value = "description", defaultValue = "") String description
-
+        @RequestParam(value = "description", defaultValue = "") String description,
+        @RequestParam(value = "startDate", defaultValue = "#{T(java.time.LocalDate).now()}") @DateTimeFormat(iso = ISO.DATE) LocalDate startDate
+        
     ){
         
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
 
-        Page<EventDTO> list = service.getEvents(pageRequest, name, place,description);
+        Page<EventDTO> list = service.getEvents(pageRequest, name, place,description,startDate);
         return ResponseEntity.ok(list);
     }
 
