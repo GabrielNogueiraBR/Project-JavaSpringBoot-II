@@ -19,7 +19,6 @@ Foi realizado o deploy do projeto no site Heroku.
 ## 🚀 Project Java Spring Boot - Endpoints
 
 ### <b>GET<b>
----
 - /events
     ```
         https://application-poo-ii-springboot.herokuapp.com/events
@@ -29,7 +28,6 @@ Foi realizado o deploy do projeto no site Heroku.
         https://application-poo-ii-springboot.herokuapp.com/events/1
     ```
 ### <b>POST<b>
----
 - /events
     ```
         https://application-poo-ii-springboot.herokuapp.com/events
