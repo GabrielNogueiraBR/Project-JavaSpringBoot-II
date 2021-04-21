@@ -15,3 +15,35 @@ Criação de uma API, com a utilização do Spring Framework (Spring Boot) e do 
 ---
 Foi realizado o deploy do projeto no site Heroku.
  - Link: https://application-poo-ii-springboot.herokuapp.com
+
+## 🚀 Project Java Spring Boot - Endpoints
+
+### <b>GET<b>
+---
+- /events
+    ```
+        https://application-poo-ii-springboot.herokuapp.com/events
+    ```
+- /events/id
+    ```
+        https://application-poo-ii-springboot.herokuapp.com/events/1
+    ```
+### <b>POST<b>
+---
+- /events
+    ```
+        https://application-poo-ii-springboot.herokuapp.com/events
+    ```
+    Body raw(json)
+    ```
+    {
+        "name" : "Deus Chamma",
+        "description" : "Grupo de oração Jovem",
+        "place" : "Igreja São José, Votorantim-SP",
+        "startDate" : "2021-05-25",
+        "endDate" : "2021-05-25",
+        "startTime" : "19:30",
+        "endTime" : "21:30",
+        "emailContact" : "deuschamma06@gmail.com"
+    }    
+    ```
