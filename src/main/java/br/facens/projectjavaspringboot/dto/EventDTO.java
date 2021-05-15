@@ -1,71 +1,66 @@
-package br.facens.projectjavaspringboot.dto;
+// package br.facens.projectjavaspringboot.dto;
 
-import br.facens.projectjavaspringboot.entities.Event;
+// import java.time.LocalDate;
+// import java.time.LocalTime;
 
-public class EventDTO {
+// import br.facens.projectjavaspringboot.entities.Event;
+
+// public class EventDTO {
     
-    private Long id;
-    private String name;
-    private String description;
-    private String place;
-    private String emailContact;
+//     private Long id;
+//     private String name;
+//     private String description;
+//     private LocalDate startDate;
+//     private LocalDate endDate;
+//     private LocalTime startTime;
+//     private LocalTime endTime;
+//     private String emailContact;
+//     private Long amountFreeTickets;
+//     private Long amountPayedTickets;
+//     private Long freeTicketsSelled;
+//     private Long payedTicketsSelled;
+//     private Double priceTicket;
     
-    public EventDTO() {
-    }
+//     public EventDTO() {
+//     }
 
-    public EventDTO(Long id, String name, String description, String place, String emailContact) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.place = place;
-        this.emailContact = emailContact;
-    }
+    
 
-    public EventDTO(Event event) {
-        this.id = event.getId();
-        this.name = event.getName();
-        this.description = event.getDescription();
-        this.place = event.getPlace();
-        this.emailContact = event.getEmailContact();
-    }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//     public EventDTO(Long id, String name, String description, LocalDate startDate, LocalDate endDate,
+//             LocalTime startTime, LocalTime endTime, String emailContact, Long amountFreeTickets,
+//             Long amountPayedTickets, Long freeTicketsSelled, Long payedTicketsSelled, Double priceTicket) {
+//         this.id = id;
+//         this.name = name;
+//         this.description = description;
+//         this.startDate = startDate;
+//         this.endDate = endDate;
+//         this.startTime = startTime;
+//         this.endTime = endTime;
+//         this.emailContact = emailContact;
+//         this.amountFreeTickets = amountFreeTickets;
+//         this.amountPayedTickets = amountPayedTickets;
+//         this.freeTicketsSelled = freeTicketsSelled;
+//         this.payedTicketsSelled = payedTicketsSelled;
+//         this.priceTicket = priceTicket;
+//     }
 
-    public String getName() {
-        return name;
-    }
+//     public EventDTO(Event event) {
+//         this.id = event.getId();
+//         this.name = event.getName();
+//         this.description = event.getDescription();
+//         this.startDate = event.getStartDate();
+//         this.endDate = event.getEndDate();
+//         this.startTime = event.getStartTime();
+//         this.endTime = event.getEndTime();
+//         this.emailContact = event.getEmailContact();
+//         this.amountFreeTickets = event.getAmountFreeTickets();
+//         this.amountPayedTickets = event.getAmountPayedTickets();
+//         this.freeTicketsSelled = 0L;
+//         this.payedTicketsSelled = 0L;
+//         this.priceTicket = event.getPriceTicket();
+//     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getEmailContact() {
-        return emailContact;
-    }
-
-    public void setEmailContact(String emailContact) {
-        this.emailContact = emailContact;
-    }
-}
+    
+// }
