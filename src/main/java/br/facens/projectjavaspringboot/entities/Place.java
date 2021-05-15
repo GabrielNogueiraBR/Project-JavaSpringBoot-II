@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import br.facens.projectjavaspringboot.dto.PlaceInsertDTO;
+import br.facens.projectjavaspringboot.dto.PlaceUpdateDTO;
+
 @Entity
 @Table(name="TB_PLACE")
 public class Place implements Serializable{
@@ -38,6 +41,11 @@ public class Place implements Serializable{
         this.id = id;
         this.name = name;
         this.address = address;
+    }
+
+    public Place(PlaceInsertDTO insertDTO) {
+        this.setName(insertDTO.getName());
+        this.setAddress(insertDTO.getAddress());
     }
 
     public List<Event> getEvents() {
@@ -95,6 +103,11 @@ public class Place implements Serializable{
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public void updatePlace(PlaceUpdateDTO updateDTO) {
+        this.name = updateDTO.getName();
+        this.address = updateDTO.getAddress();
     }
     
 }
