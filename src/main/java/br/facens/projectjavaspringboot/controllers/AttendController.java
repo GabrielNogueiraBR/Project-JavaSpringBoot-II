@@ -43,9 +43,9 @@ public class AttendController {
 
     @PostMapping()
     public ResponseEntity<AttendDTO> insertAttend(@Valid @RequestBody AttendInsertDTO insertDTO){
-        AttendDTO AttendDTO = attendService.insert(insertDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(AttendDTO.getId()).toUri();
-        return ResponseEntity.created(uri).body(AttendDTO);
+        AttendDTO attendDTO = attendService.insert(insertDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(attendDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(attendDTO);
 
     }
 
@@ -57,8 +57,8 @@ public class AttendController {
 
     @PutMapping("{id}")
     public ResponseEntity<AttendDTO> updateAttend(@PathVariable Long id, @Valid @RequestBody AttendUpdateDTO updateDTO){
-        AttendDTO AttendDTO = attendService.updateAttend(id, updateDTO);
-        return ResponseEntity.ok().body(AttendDTO);
+        AttendDTO attendDTO = attendService.updateAttend(id, updateDTO);
+        return ResponseEntity.ok().body(attendDTO);
 
     }
 }
