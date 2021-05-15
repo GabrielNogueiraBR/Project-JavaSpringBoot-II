@@ -18,6 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.facens.projectjavaspringboot.dto.EventInsertDTO;
+import br.facens.projectjavaspringboot.dto.EventUpdateDTO;
+
 // import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 
 @Entity
@@ -58,18 +61,19 @@ public class Event implements Serializable{
 
     }
 
-    // public Event(EventInsertDTO insertDto) {
-    //     this.name = insertDto.getName();
-    //     this.description = insertDto.getDescription();
-    //     this.startDate = insertDto.getStartDate();
-    //     this.endDate = insertDto.getEndDate();
-    //     this.startTime = insertDto.getStartTime();
-    //     this.endTime = insertDto.getEndTime();
-    //     this.emailContact = insertDto.getEmailContact();
-    //     this.amountFreeTickets = insertDto.getAmountFreeTickets();
-    //     this.amountPayedTickets = insertDto.getAmountPayedTickets();
-    //     this.priceTicket = insertDto.getPriceTicket();
-    // }
+    public Event(EventInsertDTO insertDto, Admin admin) {
+        this.name = insertDto.getName();
+        this.description = insertDto.getDescription();
+        this.startDate = insertDto.getStartDate();
+        this.endDate = insertDto.getEndDate();
+        this.startTime = insertDto.getStartTime();
+        this.endTime = insertDto.getEndTime();
+        this.emailContact = insertDto.getEmailContact();
+        this.amountFreeTickets = insertDto.getAmountFreeTickets();
+        this.amountPayedTickets = insertDto.getAmountPayedTickets();
+        this.priceTicket = insertDto.getPriceTicket();
+        this.admin = admin;
+    }
     
     public Event(Long id, String name, String description, LocalDate startDate, LocalDate endDate, LocalTime startTime,
             LocalTime endTime, String emailContact, Long amountFreeTickets, Long amountPayedTickets,
@@ -226,6 +230,20 @@ public class Event implements Serializable{
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public void update(EventUpdateDTO updateDTO, Admin admin2) {
+        this.name = updateDTO.getName();
+        this.description = updateDTO.getDescription();
+        this.startDate = updateDTO.getStartDate();
+        this.endDate = updateDTO.getEndDate();
+        this.startTime = updateDTO.getStartTime();
+        this.endTime = updateDTO.getEndTime();
+        this.emailContact = updateDTO.getEmailContact();
+        this.amountFreeTickets = updateDTO.getAmountFreeTickets();
+        this.amountPayedTickets = updateDTO.getAmountPayedTickets();
+        this.priceTicket = updateDTO.getPriceTicket();
+        this.admin = admin2;
     }
 
 }

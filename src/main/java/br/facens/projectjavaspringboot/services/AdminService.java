@@ -31,11 +31,16 @@ public class AdminService {
         return toDTOList(admins);
     }
 
-    public AdminDTO getAdminById(Long id) {
+    public AdminDTO getAdminDTOById(Long id) {
         Optional<Admin> opt = adminRepository.findById(id);
         Admin admin = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found"));
 
         return new AdminDTO(admin);
+    }
+
+    public Admin getAdminById(Long id){
+        Optional<Admin> opt = adminRepository.findById(id);
+        return opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found"));
     }
 
     public AdminDTO insert(AdminInsertDTO insertDTO) {

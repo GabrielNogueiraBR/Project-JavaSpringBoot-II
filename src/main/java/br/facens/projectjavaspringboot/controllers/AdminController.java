@@ -21,7 +21,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.facens.projectjavaspringboot.dto.AdminDTO;
 import br.facens.projectjavaspringboot.dto.AdminInsertDTO;
 import br.facens.projectjavaspringboot.dto.AdminUpdateDTO;
-import br.facens.projectjavaspringboot.entities.Admin;
 import br.facens.projectjavaspringboot.services.AdminService;
 
 @RestController
@@ -39,7 +38,7 @@ public class AdminController {
 
     @GetMapping("{id}")
     public ResponseEntity<AdminDTO> getAdminById(@PathVariable Long id){
-        AdminDTO aDto = adminService.getAdminById(id);
+        AdminDTO aDto = adminService.getAdminDTOById(id);
         return ResponseEntity.ok(aDto);
     }
 

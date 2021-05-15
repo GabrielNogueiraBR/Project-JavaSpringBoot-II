@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 public class EventUpdateDTO {
+    
     @NotBlank(message = "O campo 'name' precisa ser preenchido.")
     @Length(min = 3, max = 100, message = "o campo 'name' precisa estar entre 3 ate 100 caracteres.")
     private String name;
@@ -37,6 +38,7 @@ public class EventUpdateDTO {
     @AssertTrue(message = "O campo 'endDate' deve ser maior, ou seja, depois do campo 'startDate'.")
     public boolean isEndDateValid(){
         var dias = Period.between(startDate, endDate).getDays();
+        // Validacao para nao permitir data final do evento antes da data inicial
         if(dias < 0)
             return false;
         return true;
@@ -52,23 +54,135 @@ public class EventUpdateDTO {
     @Email(message = "O campo 'emailContact' deve conter um email valido.")
     private String emailContact;
 
-    @NotBlank
     @PositiveOrZero(message = "A quantidade de tickets gratuitos deve ser zero ou mais.")
     private Long amountFreeTickets;
 
-    @NotBlank
     @PositiveOrZero(message = "A quantidade de tickets pagos deve ser zero ou mais.")
     private Long amountPayedTickets;
 
-    @NotBlank
     @PositiveOrZero(message = "O valor dos tickets deve ser maior ou igual a zero.")
     private Double priceTicket;
 
-    @NotBlank
-    @PositiveOrZero(message="A quantidade de ingressos gratuitos vendidos deve ser maior ou igual a zero.")
-    private Long freeTicketsSelled;
+    @PositiveOrZero(message = "O número identificador do administrador deve ser positivo.")
+    private Long idAdmin;
 
-    @NotBlank
-    @PositiveOrZero(message="A quantidade de ingressos pagos vendidos deve ser maior ou igual a zero.")
-    private Long payedTicketsSelled;
+    public Long getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(Long idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
+    public EventUpdateDTO() {
+
+    }
+
+    public EventUpdateDTO(
+            String name,
+            String description,
+            LocalDate startDate,
+            LocalDate endDate,
+            LocalTime startTime,
+            LocalTime endTime,
+            String emailContact,
+            Long amountFreeTickets,
+            Long amountPayedTickets,
+            Double priceTicket,
+            Long idAdmin) {
+        this.name = name;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.emailContact = emailContact;
+        this.amountFreeTickets = amountFreeTickets;
+        this.amountPayedTickets = amountPayedTickets;
+        this.priceTicket = priceTicket;
+        this.idAdmin = idAdmin;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getEmailContact() {
+        return emailContact;
+    }
+
+    public void setEmailContact(String emailContact) {
+        this.emailContact = emailContact;
+    }
+
+    public Long getAmountFreeTickets() {
+        return amountFreeTickets;
+    }
+
+    public void setAmountFreeTickets(Long amountFreeTickets) {
+        this.amountFreeTickets = amountFreeTickets;
+    }
+
+    public Long getAmountPayedTickets() {
+        return amountPayedTickets;
+    }
+
+    public void setAmountPayedTickets(Long amountPayedTickets) {
+        this.amountPayedTickets = amountPayedTickets;
+    }
+
+    public Double getPriceTicket() {
+        return priceTicket;
+    }
+
+    public void setPriceTicket(Double priceTicket) {
+        this.priceTicket = priceTicket;
+    }
+
+    
+    
 }
