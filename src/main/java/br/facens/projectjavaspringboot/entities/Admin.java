@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.Valid;
+
+import br.facens.projectjavaspringboot.dto.AdminInsertDTO;
+import br.facens.projectjavaspringboot.dto.AdminUpdateDTO;
 
 @Entity
 @Table(name = "TB_ADMIN")
@@ -24,6 +28,12 @@ public class Admin extends BaseUser{
 
     public Admin(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Admin(AdminInsertDTO insertDTO){
+        this.setName(insertDTO.getName());
+        this.setEmail(insertDTO.getEmail());
+        this.setPhoneNumber(insertDTO.getPhoneNumber());
     }
 
     public Admin(Long id, String name, String email, String phoneNumber) {
@@ -45,6 +55,12 @@ public class Admin extends BaseUser{
 
     public void addEvent(Event event) {
         this.events.add(event);
+    }
+
+    public void updateAdmin(AdminUpdateDTO updateDTO) {
+        this.setName(updateDTO.getName());
+        this.setEmail(updateDTO.getEmail());
+        this.setPhoneNumber(updateDTO.getPhoneNumber());
     }
 
     

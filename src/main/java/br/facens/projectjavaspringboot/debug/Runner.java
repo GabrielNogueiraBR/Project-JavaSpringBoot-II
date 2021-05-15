@@ -47,13 +47,13 @@ public class Runner implements CommandLineRunner {
         System.out.println("*************** Inicio do Runner! ************");
         System.out.println("*************** Inicio do Transctional ************");
 
-        createAdmins();
-        createEvents();
-        createAttendees();
-        createPlaces();
-        associationEventAndPlace();
-        associationAttendeesAndTicketsAndEvent();
-        updateEvent();
+        // createAdmins();
+        // createEvents();
+        // createAttendees();
+        // createPlaces();
+        // associationEventAndPlace();
+        // associationAttendeesAndTicketsAndEvent();
+        // updateEvent();
 
 
         System.out.println("*************** Fim do Transctional ************");
