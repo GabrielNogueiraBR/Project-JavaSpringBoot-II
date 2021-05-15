@@ -33,15 +33,15 @@ public class AttendService {
 
     public AttendDTO getAttendById(Long id) {
         Optional<Attend> opt = attendRepository.findById(id);
-        Attend Attend = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found"));
+        Attend attend = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found"));
 
-        return new AttendDTO(Attend);
+        return new AttendDTO(attend);
     }
 
     public AttendDTO insert(AttendInsertDTO insertDTO) {
-        Attend Attend = new Attend(insertDTO);
-        Attend = attendRepository.save(Attend);
-        return new AttendDTO(Attend);
+        Attend attend = new Attend(insertDTO);
+        attend = attendRepository.save(attend);
+        return new AttendDTO(attend);
     }
 
     public void deleteAttendById(Long id) {
@@ -58,21 +58,21 @@ public class AttendService {
 
     public AttendDTO updateAttend(Long id, @Valid AttendUpdateDTO updateDTO) {
         try{
-            Attend Attend = attendRepository.getOne(id);
-            Attend.updateAttend(updateDTO);
-            Attend = attendRepository.save(Attend);
-            return new AttendDTO(Attend);
+            Attend attend = attendRepository.getOne(id);
+            attend.updateAttend(updateDTO);
+            attend = attendRepository.save(attend);
+            return new AttendDTO(attend);
         }
         catch(EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found");
         }
     }
 
-    public List<AttendDTO> toDTOList(List<Attend> Attendees){
+    public List<AttendDTO> toDTOList(List<Attend> attendees){
         List<AttendDTO> listDTO = new ArrayList<>();
 
-        for (Attend Attend: Attendees) {
-            AttendDTO dto = new AttendDTO(Attend);
+        for (Attend attend: attendees) {
+            AttendDTO dto = new AttendDTO(attend);
             listDTO.add(dto);
         }
 
