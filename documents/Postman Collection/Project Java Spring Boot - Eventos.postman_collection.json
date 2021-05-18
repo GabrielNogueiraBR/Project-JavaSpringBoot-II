@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "c89431e7-368a-4556-848d-847a808ec55b",
+		"name": "Project Java Spring Boot - Eventos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "events",
+					"item": [
+						{
+							"name": "/events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/events?page=0&linesPerPage=8&direction=ASC&orderBy=id&name=Fes&description=Votorantim&startDate=2021-05-01",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "8"
+										},
+										{
+											"key": "direction",
+											"value": "ASC"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										},
+										{
+											"key": "name",
+											"value": "Fes"
+										},
+										{
+											"key": "description",
+											"value": "Votorantim"
+										},
+										{
+											"key": "startDate",
+											"value": "2021-05-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "events/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/events/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/events",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Festa Junina\",\r\n    \"description\" : \"Festa que ocorre no mês de Junho\",\r\n    \"startDate\" : \"2021-05-21\",\r\n    \"endDate\" : \"2021-07-10\",\r\n    \"startTime\" : \"19:30\",\r\n    \"endTime\" : \"23:30\",\r\n    \"emailContact\" : \"eventosvotorantim@gmail.com\",\r\n    \"amountFreeTickets\": 10,\r\n    \"amountPayedTickets\": 50,\r\n    \"priceTicket\": 24.5,\r\n    \"idAdmin\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/events/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Festa Junina\",\r\n    \"description\" : \"Festa que ocorre no mês de Junho\",\r\n    \"startDate\" : \"2021-05-21\",\r\n    \"endDate\" : \"2021-07-10\",\r\n    \"startTime\" : \"19:30\",\r\n    \"endTime\" : \"23:30\",\r\n    \"emailContact\" : \"eventosvotorantim@gmail.com\",\r\n    \"amountFreeTickets\": 10,\r\n    \"amountPayedTickets\": 50,\r\n    \"priceTicket\": 24.5,\r\n    \"idAdmin\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/events/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/events/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "admins",
+					"item": [
+						{
+							"name": "/admins",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admins",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admins/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Cláudio Vinicius Murilo Figueiredo\",\r\n    \"email\": \"claudiovinicius@pibnet.com.br\",\r\n    \"phoneNumber\": \"(81) 98805-7808\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/admins",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admins/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Marcos Vinicius Eduardo Ribeiro\",\r\n    \"email\": \"marcosvinicius@fclcapital.com\",\r\n    \"phoneNumber\": \"(79) 99420-1570\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/admins/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admins",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "attendees",
+					"item": [
+						{
+							"name": "/attendees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/attendees",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"attendees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/attendees/4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"attendees",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tomás Miguel Carvalho\",\r\n    \"email\": \"ttomasmiguelcarvalho@aspadvocacia.com\",\r\n    \"balance\": 3.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/attendees",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"attendees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/attendees/4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"attendees",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vinicius João Nathan Araújo\",\r\n    \"email\": \"vviniciusjoaonathanaraujo@gerdau.com.br\",\r\n    \"balance\": 0.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/attendees/4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"attendees",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "places",
+					"item": [
+						{
+							"name": "/places",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/places",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/places/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Petrópolis\",\r\n    \"address\": \"Rua Estado do Paraná\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/places",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/places/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Igreja São José - Votorantim\",\r\n    \"address\": \"R. Amirtes Luvison\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/places/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"places",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "heroku",
+			"item": [
+				{
+					"name": "events",
+					"item": [
+						{
+							"name": "/events",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/events?page=0&linesPerPage=8&direction=ASC&orderBy=id&name=Fes&description=Votorantim&startDate=2021-05-01",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"events"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "8"
+										},
+										{
+											"key": "direction",
+											"value": "ASC"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										},
+										{
+											"key": "name",
+											"value": "Fes"
+										},
+										{
+											"key": "description",
+											"value": "Votorantim"
+										},
+										{
+											"key": "startDate",
+											"value": "2021-05-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "events/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/events/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"events",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/events",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Festa Junina\",\r\n    \"description\" : \"Festa que ocorre no mês de Junho\",\r\n    \"startDate\" : \"2021-05-21\",\r\n    \"endDate\" : \"2021-07-10\",\r\n    \"startTime\" : \"19:30\",\r\n    \"endTime\" : \"23:30\",\r\n    \"emailContact\" : \"eventosvotorantim@gmail.com\",\r\n    \"amountFreeTickets\": 10,\r\n    \"amountPayedTickets\": 50,\r\n    \"priceTicket\": 24.5,\r\n    \"idAdmin\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/events",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/events/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Festa Junina\",\r\n    \"description\" : \"Festa que ocorre no mês de Junho\",\r\n    \"startDate\" : \"2021-05-21\",\r\n    \"endDate\" : \"2021-07-10\",\r\n    \"startTime\" : \"19:30\",\r\n    \"endTime\" : \"23:30\",\r\n    \"emailContact\" : \"eventosvotorantim@gmail.com\",\r\n    \"amountFreeTickets\": 10,\r\n    \"amountPayedTickets\": 50,\r\n    \"priceTicket\": 24.5,\r\n    \"idAdmin\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/events/3",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"events",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/events/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/events/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"events",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "admins",
+					"item": [
+						{
+							"name": "/admins",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admins",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Cláudio Vinicius Murilo Figueiredo\",\r\n    \"email\": \"claudiovinicius@pibnet.com.br\",\r\n    \"phoneNumber\": \"(81) 98805-7808\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admins",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admins/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Marcos Vinicius Eduardo Ribeiro\",\r\n    \"email\": \"marcosvinicius@fclcapital.com\",\r\n    \"phoneNumber\": \"(79) 99420-1570\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"admins",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "attendees",
+					"item": [
+						{
+							"name": "/attendees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"attendees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees/4",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"attendees",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tomás Miguel Carvalho\",\r\n    \"email\": \"ttomasmiguelcarvalho@aspadvocacia.com\",\r\n    \"balance\": 3.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"attendees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees/4",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"attendees",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/attendees/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Vinicius João Nathan Araújo\",\r\n    \"email\": \"vviniciusjoaonathanaraujo@gerdau.com.br\",\r\n    \"balance\": 0.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees/4",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"attendees",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "places",
+					"item": [
+						{
+							"name": "/places",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/places",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/places/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"places",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Petrópolis\",\r\n    \"address\": \"Rua Estado do Paraná\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/places",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/places/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"places",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/places/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Igreja São José - Votorantim\",\r\n    \"address\": \"R. Amirtes Luvison\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/places/1",
+									"protocol": "https",
+									"host": [
+										"application-poo-ii-springboot",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"places",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
