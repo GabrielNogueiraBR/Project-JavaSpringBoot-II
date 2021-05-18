@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 import javax.validation.Valid;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,15 +44,14 @@ public class EventController {
         @RequestParam(value = "direction", defaultValue = "ASC") String direction,
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
         @RequestParam(value = "name", defaultValue = "") String name,
-        @RequestParam(value = "place", defaultValue = "") String place,
         @RequestParam(value = "description", defaultValue = "") String description,
         @RequestParam(value = "startDate", defaultValue = "#{T(java.time.LocalDate).now()}") @DateTimeFormat(iso = ISO.DATE) LocalDate startDate
         
     ){
         
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction.toUpperCase()),orderBy);
 
-        Page<EventDTO> list = service.getEvents(pageRequest, name, place,description,startDate);
+        Page<EventDTO> list = service.getEvents(pageRequest, name, description,startDate);
         return ResponseEntity.ok(list);
     }
 
@@ -64,15 +62,15 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventInsertDTO insertDto){
-        EventDTO eventDTO = service.insert(insertDto);
+    public ResponseEntity<EventDTO> insertEvent(@Valid @RequestBody EventInsertDTO insertDto){
+        EventDTO eventDTO = service.insertEvent(insertDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(eventDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(eventDTO);
     }
     
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        service.delete(id);
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long id){
+        service.deleteEvent(id);
         return ResponseEntity.noContent().build();
     }
 
