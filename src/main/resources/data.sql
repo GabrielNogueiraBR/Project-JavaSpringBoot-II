@@ -17,11 +17,11 @@ INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(5,0.0)
 INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(6,0.0)
 
 -- TABELA EVENT
-INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets,description,email_contact,end_date,end_time,name,price_ticket,start_date,start_time) VALUES(1,10,120,'Festival da uva em Votorantim','festivaluva@gmail.com','2021-05-20','23:00:00','Festival da Uva','100.5','2021-05-14','20:00:00')
+INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets,description,email_contact,end_date,end_time,name,price_ticket,start_date,start_time) VALUES(1,10,120,'Festival da uva em Votorantim','festivaluva@gmail.com','2021-06-20','23:00:00','Festival da Uva','100.5','2021-06-14','20:00:00')
 
-INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(1,60,0,'Grupo de Oração Jovem','grupo@gmail.com','2021-05-15','20:30:00','Grupo de Oração','0.0','2021-05-15','19:00:00')
+INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(1,60,0,'Grupo de Oração Jovem','grupo@gmail.com','2021-06-15','20:30:00','Grupo de Oração','0.0','2021-06-15','19:00:00')
 
-INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(2,60,0, 'Santa Missa na paróquia São José','paroquia@gmail.com','2021-05-16','09:00:00','Santa Missa', '0.0','2021-05-16','08:00:00')
+INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(2,60,0, 'Santa Missa na paróquia São José','paroquia@gmail.com','2021-06-16','09:00:00','Santa Missa', '0.0','2021-06-16','08:00:00')
 
 -- TABELA PLACE
 INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('R. Amirtes Luvison, s/n - Chave, Votorantim - SP, 18114-060','Igreja São José - Votorantim')

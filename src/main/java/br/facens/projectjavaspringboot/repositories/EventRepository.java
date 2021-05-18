@@ -16,7 +16,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
     // Montando uma consulta paginada com uma consulta JPQL
     @Query("SELECT e FROM Event e " +
            "WHERE " +
-           " ( LOWER(e.name)      LIKE   LOWER(CONCAT('%', :name,    '%')))  AND " +
+           " ( LOWER(e.name)      LIKE   LOWER(CONCAT('%',:name,'%')))  AND " +
            " ( LOWER(e.description) LIKE LOWER(CONCAT('%',:description,'%'))) AND" +
            " e.startDate >= :startDate"
     )

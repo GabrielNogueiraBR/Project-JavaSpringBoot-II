@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 import javax.validation.Valid;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -50,7 +49,7 @@ public class EventController {
         
     ){
         
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction.toUpperCase()),orderBy);
 
         Page<EventDTO> list = service.getEvents(pageRequest, name, description,startDate);
         return ResponseEntity.ok(list);

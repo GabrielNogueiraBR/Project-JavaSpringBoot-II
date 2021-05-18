@@ -1,11 +1,8 @@
 package br.facens.projectjavaspringboot.services;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
@@ -96,7 +93,7 @@ public class EventService {
             }
             else{
                 // Caso nao possa excluir o evento, lancar uma excessao
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not delete Event with foreign key.");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You cannot delete an event with tickets sold.");
             }
         }
         catch(EmptyResultDataAccessException e){
