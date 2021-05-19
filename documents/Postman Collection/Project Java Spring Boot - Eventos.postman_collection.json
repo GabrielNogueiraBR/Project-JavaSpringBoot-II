@@ -163,13 +163,31 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admins",
+									"raw": "localhost:8080/admins?page=0&linesPerPage=6&direction=ASC&orderBy=id",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"admins"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "6"
+										},
+										{
+											"key": "direction",
+											"value": "ASC"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -279,13 +297,31 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/attendees",
+									"raw": "localhost:8080/attendees?page=0&linesPerPage=6&direction=ASC&orderBy=id",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"attendees"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "6"
+										},
+										{
+											"key": "direction",
+											"value": "ASC"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -395,13 +431,31 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/places",
+									"raw": "localhost:8080/places?page=0&linesPerPage=8&direction=asc&orderBy=id",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
 										"places"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "8"
+										},
+										{
+											"key": "direction",
+											"value": "asc"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -672,7 +726,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins",
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/admins?page=0&linesPerPage=6&direction=ASC&orderBy=id",
 									"protocol": "https",
 									"host": [
 										"application-poo-ii-springboot",
@@ -681,6 +735,24 @@
 									],
 									"path": [
 										"admins"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "6"
+										},
+										{
+											"key": "direction",
+											"value": "ASC"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -798,7 +870,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees",
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/attendees?page=0&linesPerPage=6&direction=ASC&orderBy=id",
 									"protocol": "https",
 									"host": [
 										"application-poo-ii-springboot",
@@ -807,6 +879,24 @@
 									],
 									"path": [
 										"attendees"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "6"
+										},
+										{
+											"key": "direction",
+											"value": "ASC"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										}
 									]
 								}
 							},
@@ -924,7 +1014,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://application-poo-ii-springboot.herokuapp.com/places",
+									"raw": "https://application-poo-ii-springboot.herokuapp.com/places?page=0&linesPerPage=8&direction=asc&orderBy=id",
 									"protocol": "https",
 									"host": [
 										"application-poo-ii-springboot",
@@ -933,6 +1023,24 @@
 									],
 									"path": [
 										"places"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "linesPerPage",
+											"value": "8"
+										},
+										{
+											"key": "direction",
+											"value": "asc"
+										},
+										{
+											"key": "orderBy",
+											"value": "id"
+										}
 									]
 								}
 							},
