@@ -1,51 +1,51 @@
 -- TABELA BASE USER
-INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('gabrielnoog7@gmail.com','Gabriel Augusto Nogueira')
-INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('sbastiao@gmail.com','Sebastião Bernardo Rocha')
-INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('maragao@gmail.com','Murilo Benício Carlos Eduardo Aragão')
-INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('odavi@gmail.com','Otávio Davi Pinto')
-INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('hcastro@gmail.com','Heloisa Lívia Jéssica Castro')
-INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('msilva@gmail.com','Mateus Nathan Silva')
+INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('gabrielnoog7@gmail.com','Gabriel Augusto Nogueira');
+INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('sbastiao@gmail.com','Sebastião Bernardo Rocha');
+INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('maragao@gmail.com','Murilo Benício Carlos Eduardo Aragão');
+INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('odavi@gmail.com','Otávio Davi Pinto');
+INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('hcastro@gmail.com','Heloisa Lívia Jéssica Castro');
+INSERT INTO TB_BASE_USER (EMAIL,NAME) VALUES('msilva@gmail.com','Mateus Nathan Silva');
 
 -- TABELA ADMIN
-INSERT INTO TB_ADMIN (USER_ID,PHONE_NUMBER) VALUES(1,'(33) 95177-4789')
-INSERT INTO TB_ADMIN (USER_ID,PHONE_NUMBER) VALUES(2,'(42) 98321-4279')
-INSERT INTO TB_ADMIN (USER_ID,PHONE_NUMBER) VALUES(3,'(73) 91328-1338')
+INSERT INTO TB_ADMIN (USER_ID,PHONE_NUMBER) VALUES(1,'(33) 95177-4789');
+INSERT INTO TB_ADMIN (USER_ID,PHONE_NUMBER) VALUES(2,'(42) 98321-4279');
+INSERT INTO TB_ADMIN (USER_ID,PHONE_NUMBER) VALUES(3,'(73) 91328-1338');
 
 -- TABELA ATTEND
-INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(4,0.0)
-INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(5,0.0)
-INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(6,0.0)
+INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(4,0.0);
+INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(5,0.0);
+INSERT INTO TB_ATTEND (USER_ID,BALANCE) VALUES(6,0.0);
 
 -- TABELA EVENT
-INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets,description,email_contact,end_date,end_time,name,price_ticket,start_date,start_time) VALUES(1,10,120,'Festival da uva em Votorantim','festivaluva@gmail.com','2021-06-20','23:00:00','Festival da Uva','100.5','2021-06-14','20:00:00')
+INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets,description,email_contact,end_date,end_time,name,price_ticket,start_date,start_time) VALUES(1,10,120,'Festival da uva em Votorantim','festivaluva@gmail.com','2021-06-20','23:00:00','Festival da Uva','100.5','2021-06-14','20:00:00');
 
-INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(1,60,0,'Grupo de Oração Jovem','grupo@gmail.com','2021-06-15','20:30:00','Grupo de Oração','0.0','2021-06-15','19:00:00')
+INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(1,60,0,'Grupo de Oração Jovem','grupo@gmail.com','2021-06-15','20:30:00','Grupo de Oração','0.0','2021-06-15','19:00:00');
 
-INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(2,60,0, 'Santa Missa na paróquia São José','paroquia@gmail.com','2021-06-16','09:00:00','Santa Missa', '0.0','2021-06-16','08:00:00')
+INSERT INTO TB_EVENT (admin_user_id,amount_free_tickets,amount_payed_tickets, description, email_contact, end_date, end_time, name, price_ticket, start_date, start_time) VALUES(2,60,0, 'Santa Missa na paróquia São José','paroquia@gmail.com','2021-06-16','09:00:00','Santa Missa', '0.0','2021-06-16','08:00:00');
 
 -- TABELA PLACE
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('R. Amirtes Luvison, s/n - Chave, Votorantim - SP, 18114-060','Igreja São José - Votorantim')
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Rua das Turqueza','Parque das Gemas')
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Beco Nova Esperança','Nossa Senhora de Fátima')
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Rua Trinta e Oito','Santa Maria')
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Avenida Pedro Adams Filho','Santo Afonso')
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Avenida Ouro Fino','Renascer')
-INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Rua Oscar Martins','Jardim Nossa Senhora da Glória')
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('R. Amirtes Luvison, s/n - Chave, Votorantim - SP, 18114-060','Igreja São José - Votorantim');
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Rua das Turqueza','Parque das Gemas');
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Beco Nova Esperança','Nossa Senhora de Fátima');
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Rua Trinta e Oito','Santa Maria');
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Avenida Pedro Adams Filho','Santo Afonso');
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Avenida Ouro Fino','Renascer');
+INSERT INTO TB_PLACE (ADDRESS,NAME) VALUES('Rua Oscar Martins','Jardim Nossa Senhora da Glória');
 
 -- TABELA EVENT_PLACE
-INSERT INTO TB_EVENT_PLACE (EVENT_ID,PLACE_ID) VALUES(1,2)
-INSERT INTO TB_EVENT_PLACE (EVENT_ID,PLACE_ID) VALUES(2,1)
-INSERT INTO TB_EVENT_PLACE (EVENT_ID,PLACE_ID) VALUES(3,1)
+INSERT INTO TB_EVENT_PLACE (EVENT_ID,PLACE_ID) VALUES(1,2);
+INSERT INTO TB_EVENT_PLACE (EVENT_ID,PLACE_ID) VALUES(2,1);
+INSERT INTO TB_EVENT_PLACE (EVENT_ID,PLACE_ID) VALUES(3,1);
 
 -- TABELA TICKET
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(1,4,'2021-05-15 13:40:13.377225',1,100.5)
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(1,5,'2021-05-17 13:40:13.377225',1,100.5)
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(1,6,'2021-05-19 13:40:13.377225',1,100.5)
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(1,4,'2021-05-15 13:40:13.377225',1,100.5);
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(1,5,'2021-05-17 13:40:13.377225',1,100.5);
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(1,6,'2021-05-19 13:40:13.377225',1,100.5);
 
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(2,4,'2021-05-10 13:40:13.377225',0,0)
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(2,5,'2021-05-12 13:40:13.377225',0,0)
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(2,6,'2021-05-13 13:40:13.377225',0,0)
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(2,4,'2021-05-10 13:40:13.377225',0,0);
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(2,5,'2021-05-12 13:40:13.377225',0,0);
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(2,6,'2021-05-13 13:40:13.377225',0,0);
 
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(3,4,'2021-05-11 13:40:13.377225',0,0)
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(3,5,'2021-05-13 13:40:13.377225',0,0)
-INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(3,6,'2021-05-14 13:40:13.377225',0,0)
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(3,4,'2021-05-11 13:40:13.377225',0,0);
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(3,5,'2021-05-13 13:40:13.377225',0,0);
+INSERT INTO TB_TICKET (EVENT_ID,ATTEND_USER_ID,DATE,TYPE,PRICE) VALUES(3,6,'2021-05-14 13:40:13.377225',0,0);
