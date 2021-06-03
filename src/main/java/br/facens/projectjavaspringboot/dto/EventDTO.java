@@ -20,6 +20,7 @@ public class EventDTO {
     private Long freeTicketsSelled;
     private Long payedTicketsSelled;
     private Double priceTicket;
+    private Long idAdmin;
 
     public EventDTO(){
 
@@ -27,7 +28,7 @@ public class EventDTO {
 
     public EventDTO(Long id, String name, String description, LocalDate startDate, LocalDate endDate,
             LocalTime startTime, LocalTime endTime, String emailContact, Long amountFreeTickets,
-            Long amountPayedTickets, Long freeTicketsSelled, Long payedTicketsSelled, Double priceTicket) {
+            Long amountPayedTickets, Long freeTicketsSelled, Long payedTicketsSelled, Double priceTicket, Long idAdmin) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -41,6 +42,7 @@ public class EventDTO {
         this.freeTicketsSelled = freeTicketsSelled;
         this.payedTicketsSelled = payedTicketsSelled;
         this.priceTicket = priceTicket;
+        this.idAdmin = idAdmin;
     }
 
     public EventDTO(Event event, Long freeTicketsSelled, Long payedTicketsSelled ){
@@ -57,6 +59,7 @@ public class EventDTO {
         this.freeTicketsSelled = freeTicketsSelled;
         this.payedTicketsSelled = payedTicketsSelled;
         this.priceTicket = event.getPriceTicket();
+        this.idAdmin = event.getAdmin().getId();
     }
 
     public Long getId() {
@@ -163,7 +166,11 @@ public class EventDTO {
         this.priceTicket = priceTicket;
     }
 
-    
+    public Long getIdAdmin() {
+        return idAdmin;
+    }
 
-    
+    public void setIdAdmin(Long idAdmin) {
+        this.idAdmin = idAdmin;
+    }
 }
