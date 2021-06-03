@@ -2,6 +2,8 @@ package br.facens.projectjavaspringboot.services;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -19,6 +21,8 @@ import org.springframework.web.server.ResponseStatusException;
 import br.facens.projectjavaspringboot.dto.EventDTO;
 import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 import br.facens.projectjavaspringboot.dto.EventUpdateDTO;
+import br.facens.projectjavaspringboot.dto.TicketDTO;
+import br.facens.projectjavaspringboot.dto.TicketsDTO;
 import br.facens.projectjavaspringboot.entities.Admin;
 import br.facens.projectjavaspringboot.entities.Event;
 import br.facens.projectjavaspringboot.entities.Place;
@@ -207,5 +211,33 @@ public class EventService {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This Event does not have the Place informed.");
             }
         }
+    }
+
+    @Transactional
+    public TicketsDTO getTicketsList(Long id) {
+        
+        // Verificando a existencia do evento
+        Event event = getEventById(id);
+
+        // Contabilizando a quantidade de ingressos gratituitos e pagos vendidos
+        int freeTicketsSelled = 0;
+        int payedTicketsSelled = 0;
+
+        // Array com a lista de TicketsDTO
+        List<TicketDTO> list = new ArrayList<>();
+
+        for(Ticket ticket: event.getTickets()){
+            if(ticket.getType() == TicketType.FREE){
+                freeTicketsSelled++;
+            }
+            else{
+                payedTicketsSelled++;
+            }
+            
+            // Adicionando ticketDTO na lista
+            list.add(new TicketDTO(ticket));
+        }
+
+        return new TicketsDTO(id, event.getAmountPayedTickets(), event.getAmountFreeTickets(), Long.valueOf(payedTicketsSelled), Long.valueOf(freeTicketsSelled), list);
     }
 }
