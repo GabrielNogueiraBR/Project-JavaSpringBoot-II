@@ -125,8 +125,19 @@ public class EventService {
 
             // Nao sera possivel alterar as informacoes do evento apos a sua realizacao
             if(event.getStartDate().isAfter(LocalDate.now())){
+                
                 Admin admin = adminService.getAdminById(updateDTO.getIdAdmin());
                 event.update(updateDTO,admin);
+                
+                // Verificando se eh possivel alterar de acordo com Place
+                
+                // Percorrer a lista de Places do evento
+                for(Place place : event.getPlaces()){
+                    // Caso algum Place nao tenha disponibilidade
+                    if(placeService.availability(place, event) == false){
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You cannot update this Event because the Place "+place.getId() + " does not have availability on the new Dates.");
+                    }
+                }
     
                 event = repository.save(event);
                 return getEventDTOById(event.getId());
@@ -158,8 +169,11 @@ public class EventService {
         else{
             // Validar disponibilidade
             if(placeService.availability(place,event)){
-                event.addPlace(place);
-                repository.save(event);
+                // Caso o evento nao possua uma relacao com o place, adicionamos essa relacao entre os dois
+                if(place.getEvents().contains(event) == false){
+                    event.addPlace(place);
+                    repository.save(event);
+                }
                 return getEventDTOById(event.getId());
             }
             else{

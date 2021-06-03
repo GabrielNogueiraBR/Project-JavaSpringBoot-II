@@ -123,23 +123,25 @@ public class PlaceService {
             LocalDateTime startDateTime2 = event2.getStartDate().atTime(event2.getStartTime());
             LocalDateTime endDateTime2 = event2.getEndDate().atTime(event2.getEndTime());
             
-            if(startDateTime.isAfter(startDateTime2) && startDateTime.isBefore(endDateTime2)){
-                return false;
-            }
-            else if(startDateTime.isEqual(startDateTime2) || startDateTime.isEqual(endDateTime2)){
-                return false;
-            }
-            else if(endDateTime.isAfter(startDateTime2) && endDateTime.isBefore(endDateTime2)){
-                return false;
-            }
-            else if(endDateTime.isEqual(startDateTime2) || endDateTime.isEqual(endDateTime2)){
-                return false;
-            }
-            else if(startDateTime2.isAfter(startDateTime) && startDateTime2.isBefore(endDateTime)){
-                return false;
-            }
-            else if(endDateTime2.isAfter(startDateTime) && endDateTime2.isBefore(endDateTime)){
-                return false;
+            if(event2.getId() != event.getId()){
+                if(startDateTime.isAfter(startDateTime2) && startDateTime.isBefore(endDateTime2)){
+                    return false;
+                }
+                else if(startDateTime.isEqual(startDateTime2) || startDateTime.isEqual(endDateTime2)){
+                    return false;
+                }
+                else if(endDateTime.isAfter(startDateTime2) && endDateTime.isBefore(endDateTime2)){
+                    return false;
+                }
+                else if(endDateTime.isEqual(startDateTime2) || endDateTime.isEqual(endDateTime2)){
+                    return false;
+                }
+                else if(startDateTime2.isAfter(startDateTime) && startDateTime2.isBefore(endDateTime)){
+                    return false;
+                }
+                else if(endDateTime2.isAfter(startDateTime) && endDateTime2.isBefore(endDateTime)){
+                    return false;
+                }
             }
         }
         return true;
