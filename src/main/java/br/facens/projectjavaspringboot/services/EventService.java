@@ -1,6 +1,7 @@
 package br.facens.projectjavaspringboot.services;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -149,14 +150,21 @@ public class EventService {
         // Verificar existencia do Place
         Place place = placeService.getPlaceById(idPlace);
 
-        // Validar disponibilidade
-        if(placeService.availability(place,event)){
-            event.addPlace(place);
-            repository.save(event);
-            return getEventDTOById(event.getId());
+        // Verificar se o evento já aconteceu
+        LocalDateTime endEvent = event.getEndDate().atTime(event.getEndTime());
+        if(endEvent.isBefore(LocalDateTime.now())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You cannot change an event after its start date.");
         }
         else{
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This place has no availability for the Event.");
+            // Validar disponibilidade
+            if(placeService.availability(place,event)){
+                event.addPlace(place);
+                repository.save(event);
+                return getEventDTOById(event.getId());
+            }
+            else{
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This place has no availability for the Event.");
+            }
         }
     }
 }
