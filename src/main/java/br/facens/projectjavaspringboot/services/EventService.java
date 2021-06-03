@@ -25,6 +25,7 @@ import br.facens.projectjavaspringboot.entities.Place;
 import br.facens.projectjavaspringboot.entities.Ticket;
 import br.facens.projectjavaspringboot.entities.TicketType;
 import br.facens.projectjavaspringboot.repositories.EventRepository;
+import ch.qos.logback.core.joran.event.StartEvent;
 
 @Service
 public class EventService {
@@ -162,8 +163,8 @@ public class EventService {
         Place place = placeService.getPlaceById(idPlace);
 
         // Verificar se o evento já aconteceu
-        LocalDateTime endEvent = event.getEndDate().atTime(event.getEndTime());
-        if(endEvent.isBefore(LocalDateTime.now())){
+        LocalDateTime startEvent = event.getStartDate().atTime(event.getStartTime());
+        if(startEvent.isBefore(LocalDateTime.now())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You cannot change an event after its start date.");
         }
         else{
@@ -178,6 +179,32 @@ public class EventService {
             }
             else{
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This place has no availability for the Event.");
+            }
+        }
+    }
+
+    @Transactional
+    public EventDTO removePlace(Long idEvent, Long idPlace) {
+        
+        // Verificar existencia do Event
+        Event event = getEventById(idEvent);
+
+        // Verificar existencia do Place
+        Place place = placeService.getPlaceById(idPlace);
+
+        // Verificar se o evento já aconteceu
+        LocalDateTime startEvent = event.getStartDate().atTime(event.getStartTime());
+        if(startEvent.isBefore(LocalDateTime.now())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You cannot change an event after its start date.");
+        }
+        else{
+            // Remove o relacionamento de Place e Evento se existir
+            if(event.removePlace(place)){
+                event = repository.save(event);
+                return getEventDTOById(event.getId());
+            }
+            else{
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This Event does not have the Place informed.");
             }
         }
     }

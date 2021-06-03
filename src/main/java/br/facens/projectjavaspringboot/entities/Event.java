@@ -107,6 +107,13 @@ public class Event implements Serializable{
         this.places.add(place);
     }
 
+    public boolean removePlace(Place place){
+        if(places.contains(place)){
+            return places.remove(place);
+        }
+        return false;
+    }
+
     public static long getSerialversionuid() {
         return serialVersionUID;
     }

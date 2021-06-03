@@ -85,4 +85,10 @@ public class EventController {
         EventDTO dto = service.addPlace(idEvent,idPlace);
         return ResponseEntity.ok().body(dto);
     }
+
+    @DeleteMapping("{idEvent}/places/{idPlace}")
+    public ResponseEntity<EventDTO> removePlace(@PathVariable Long idEvent, @PathVariable Long idPlace){
+        EventDTO dto = service.removePlace(idEvent,idPlace);
+        return ResponseEntity.ok().body(dto);
+    }
 }
