@@ -2,7 +2,6 @@ package br.facens.projectjavaspringboot.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -16,20 +15,15 @@ public class AttendInsertDTO {
     @Email(message = "Digite um email valido para o participante.")
     private String email;
 
-    @PositiveOrZero(message = "O valor do saldo de um participante deve ser positivo ou zero.")
-    private Double balance;
-
     public AttendInsertDTO(){
 
     }
 
     public AttendInsertDTO(
             String name,
-            String email,
-            Double balance) {
+            String email) {
         this.name = name;
         this.email = email;
-        this.balance = balance;
     }
 
     public String getName() {
@@ -47,13 +41,4 @@ public class AttendInsertDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-    
 }
