@@ -56,8 +56,8 @@ public class EventController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<EventDTO> getEventById(@PathVariable Long id) {
-        EventDTO eDto = service.getEventById(id);
+    public ResponseEntity<EventDTO> getEventDTOById(@PathVariable Long id) {
+        EventDTO eDto = service.getEventDTOById(id);
         return ResponseEntity.ok(eDto);
     }
 
@@ -77,6 +77,12 @@ public class EventController {
     @PutMapping("{id}")
     public ResponseEntity<EventDTO> update(@PathVariable Long id, @Valid @RequestBody EventUpdateDTO updateDTO){
         EventDTO dto = service.update(id, updateDTO);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping("{idEvent}/places/{idPlace}")
+    public ResponseEntity<EventDTO> addPlace(@PathVariable Long idEvent, @PathVariable Long idPlace){
+        EventDTO dto = service.addPlace(idEvent,idPlace);
         return ResponseEntity.ok().body(dto);
     }
 }

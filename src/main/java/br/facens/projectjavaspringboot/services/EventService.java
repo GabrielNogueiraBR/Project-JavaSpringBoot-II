@@ -20,6 +20,7 @@ import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 import br.facens.projectjavaspringboot.dto.EventUpdateDTO;
 import br.facens.projectjavaspringboot.entities.Admin;
 import br.facens.projectjavaspringboot.entities.Event;
+import br.facens.projectjavaspringboot.entities.Place;
 import br.facens.projectjavaspringboot.entities.Ticket;
 import br.facens.projectjavaspringboot.entities.TicketType;
 import br.facens.projectjavaspringboot.repositories.EventRepository;
@@ -33,6 +34,9 @@ public class EventService {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private PlaceService placeService;
+
     public Page<EventDTO> getEvents(
             PageRequest pageRequest, 
             String name, 
@@ -41,11 +45,11 @@ public class EventService {
     ) 
     {
             Page<Event> list = repository.findEventPageable(pageRequest, name, description,startDate);
-            return list.map(event -> getEventById(event.getId()));
+            return list.map(event -> getEventDTOById(event.getId()));
     }
 
     @Transactional
-    public EventDTO getEventById(Long id) {
+    public EventDTO getEventDTOById(Long id) {
         Optional<Event> opt = repository.findById(id);
         Event event = opt.orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found") );
 
@@ -65,6 +69,12 @@ public class EventService {
         return new EventDTO(event,Long.valueOf(freeTicketsSelled),Long.valueOf(payedTicketsSelled));
     }
 
+    public Event getEventById(Long id){
+        Optional<Event> opt = repository.findById(id);
+        Event event = opt.orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found") );
+
+        return event;
+    }
     
     public EventDTO insertEvent(EventInsertDTO insertDto) {
         
@@ -76,7 +86,7 @@ public class EventService {
         event = repository.save(event);
 
         // Retornando um EventDTO com os valores corretos de ingressos vendidos
-        return getEventById(event.getId());
+        return getEventDTOById(event.getId());
     }
 
     @Transactional
@@ -118,7 +128,7 @@ public class EventService {
                 event.update(updateDTO,admin);
     
                 event = repository.save(event);
-                return getEventById(event.getId());
+                return getEventDTOById(event.getId());
             }
             else{
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot change an event after its start date.");
@@ -127,6 +137,26 @@ public class EventService {
         }
         catch(EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
+        }
+    }
+
+    @Transactional
+    public EventDTO addPlace(Long idEvent, Long idPlace) {
+        
+        // Verificar existencia do Event
+        Event event = getEventById(idEvent);
+
+        // Verificar existencia do Place
+        Place place = placeService.getPlaceById(idPlace);
+
+        // Validar disponibilidade
+        if(placeService.availability(place,event)){
+            event.addPlace(place);
+            repository.save(event);
+            return getEventDTOById(event.getId());
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This place has no availability for the Event.");
         }
     }
 }
