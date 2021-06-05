@@ -1,5 +1,6 @@
 package br.facens.projectjavaspringboot.services;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,14 +23,15 @@ import br.facens.projectjavaspringboot.dto.EventDTO;
 import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 import br.facens.projectjavaspringboot.dto.EventUpdateDTO;
 import br.facens.projectjavaspringboot.dto.TicketDTO;
+import br.facens.projectjavaspringboot.dto.TicketInsertDTO;
 import br.facens.projectjavaspringboot.dto.TicketsDTO;
 import br.facens.projectjavaspringboot.entities.Admin;
+import br.facens.projectjavaspringboot.entities.Attend;
 import br.facens.projectjavaspringboot.entities.Event;
 import br.facens.projectjavaspringboot.entities.Place;
 import br.facens.projectjavaspringboot.entities.Ticket;
 import br.facens.projectjavaspringboot.entities.TicketType;
 import br.facens.projectjavaspringboot.repositories.EventRepository;
-import ch.qos.logback.core.joran.event.StartEvent;
 
 @Service
 public class EventService {
@@ -42,6 +44,9 @@ public class EventService {
 
     @Autowired
     private PlaceService placeService;
+
+    @Autowired
+    private AttendService attendService;
 
     public Page<EventDTO> getEvents(
             PageRequest pageRequest, 
@@ -59,20 +64,7 @@ public class EventService {
         Optional<Event> opt = repository.findById(id);
         Event event = opt.orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found") );
 
-        // Contabilizando a quantidade de ingressos gratituitos e pagos vendidos
-        int freeTicketsSelled = 0;
-        int payedTicketsSelled = 0;
-
-        for(Ticket ticket: event.getTickets()){
-            if(ticket.getType() == TicketType.FREE){
-                freeTicketsSelled++;
-            }
-            else{
-                payedTicketsSelled++;
-            }
-        }
-
-        return new EventDTO(event,Long.valueOf(freeTicketsSelled),Long.valueOf(payedTicketsSelled));
+        return new EventDTO(event,event.freeTicketsSelled(),event.payedTicketsSelled());
     }
 
     public Event getEventById(Long id){
@@ -219,25 +211,54 @@ public class EventService {
         // Verificando a existencia do evento
         Event event = getEventById(id);
 
-        // Contabilizando a quantidade de ingressos gratituitos e pagos vendidos
-        int freeTicketsSelled = 0;
-        int payedTicketsSelled = 0;
-
         // Array com a lista de TicketsDTO
         List<TicketDTO> list = new ArrayList<>();
 
         for(Ticket ticket: event.getTickets()){
-            if(ticket.getType() == TicketType.FREE){
-                freeTicketsSelled++;
-            }
-            else{
-                payedTicketsSelled++;
-            }
-            
-            // Adicionando ticketDTO na lista
             list.add(new TicketDTO(ticket));
         }
 
-        return new TicketsDTO(id, event.getAmountPayedTickets(), event.getAmountFreeTickets(), Long.valueOf(payedTicketsSelled), Long.valueOf(freeTicketsSelled), list);
+        return new TicketsDTO(id, event.getAmountPayedTickets(), event.getAmountFreeTickets(), event.payedTicketsSelled(), event.freeTicketsSelled(), list);
+    }
+
+    @Transactional
+    public TicketDTO sellTIcket(Long id, TicketInsertDTO insertDTO) {
+        
+        // Validar se o Event existe
+        Event event = getEventById(id);
+
+        // Validar se o Attend existe
+        Attend attend = attendService.getAttendById(insertDTO.getIdAttend());
+
+        // Obtendo o TicketType
+        TicketType type = insertDTO.getType();
+
+        // Validar se eh possivel realizar a venda (Nao comprar eventos que ja aconteceram e quantidade de ingressos por tipo)
+        if(event.isEventInPast()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You could not buy any tickets from event who already ocurrence.");
+        }
+        else{
+            if(event.isTicketsAvailable(type)){
+                Ticket ticket = new Ticket();
+                ticket.setType(type);
+                ticket.setDate(Instant.now());
+                if(type == TicketType.PAYED){
+                    ticket.setPrice(event.getPriceTicket());
+                }
+                else{
+                    ticket.setPrice(0.0);
+                }
+                ticket.setAttend(attend);
+                ticket.setEvent(event);
+                
+                event.addTicket(ticket);
+                repository.save(event);
+
+                return new TicketDTO(ticket);
+            }
+            else{
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"All tickets " + type.name() + " already selled.");
+            }
+        }
     }
 }

@@ -26,6 +26,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.facens.projectjavaspringboot.dto.EventDTO;
 import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 import br.facens.projectjavaspringboot.dto.EventUpdateDTO;
+import br.facens.projectjavaspringboot.dto.TicketDTO;
+import br.facens.projectjavaspringboot.dto.TicketInsertDTO;
 import br.facens.projectjavaspringboot.dto.TicketsDTO;
 import br.facens.projectjavaspringboot.services.EventService;
 
@@ -96,6 +98,12 @@ public class EventController {
     @GetMapping("/{id}/tickets")
     public ResponseEntity<TicketsDTO> getTicketsList(@PathVariable Long id){
         TicketsDTO dto = service.getTicketsList(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping("/{id}/tickets")
+    public ResponseEntity<TicketDTO> sellTicket(@PathVariable Long id, @RequestBody TicketInsertDTO insertDTO){
+        TicketDTO dto = service.sellTIcket(id,insertDTO);
         return ResponseEntity.ok().body(dto);
     }
 }

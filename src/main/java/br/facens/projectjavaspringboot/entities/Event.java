@@ -2,6 +2,7 @@ package br.facens.projectjavaspringboot.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class Event implements Serializable{
     @JoinColumn(name="ADMIN_USER_ID")
     private Admin admin;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 
     @ManyToMany()
@@ -204,6 +205,62 @@ public class Event implements Serializable{
 
     public void setPriceTicket(Double priceTicket) {
         this.priceTicket = priceTicket;
+    }
+
+    public Long freeTicketsSelled(){
+        int freeTicketsSelled = 0;
+
+        for(Ticket ticket : this.tickets){
+            if(ticket.getType() == TicketType.FREE){
+                freeTicketsSelled++;
+            }
+        }
+
+        return Long.valueOf(freeTicketsSelled);
+    }
+
+    public Long payedTicketsSelled(){
+        int payedTicketsSelled = 0;
+
+        for(Ticket ticket : this.tickets){
+            if(ticket.getType() == TicketType.PAYED){
+                payedTicketsSelled++;
+            }
+        }
+
+        return Long.valueOf(payedTicketsSelled);
+    }
+
+    public boolean isTicketsAvailable(TicketType type){
+        
+        Long amountTickets;
+        Long ticketsSelled;
+
+        if(type == TicketType.FREE){
+            amountTickets = this.getAmountFreeTickets();
+            ticketsSelled = this.freeTicketsSelled();
+        }
+        else{
+            amountTickets = this.getAmountPayedTickets();
+            ticketsSelled = this.payedTicketsSelled();
+        }
+
+        if(amountTickets - ticketsSelled > 0){
+            return true;
+        }
+        
+        return false;
+    }
+
+    public boolean isEventInPast(){
+        
+        LocalDateTime localDateTime = this.getEndDate().atTime(this.getEndTime());
+        
+        if(localDateTime.isBefore(LocalDateTime.now())){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

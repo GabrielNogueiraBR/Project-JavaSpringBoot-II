@@ -33,11 +33,18 @@ public class AttendService {
         return toDTOList(attendees);
     }
 
-    public AttendDTO getAttendById(Long id) {
+    public AttendDTO getAttendDTOById(Long id) {
         Optional<Attend> opt = attendRepository.findById(id);
         Attend attend = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found"));
 
         return new AttendDTO(attend);
+    }
+    
+    public Attend getAttendById(Long id) {
+        Optional<Attend> opt = attendRepository.findById(id);
+        Attend attend = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found"));
+
+        return attend;
     }
 
     public AttendDTO insert(AttendInsertDTO insertDTO) {

@@ -48,8 +48,8 @@ public class AttendController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<AttendDTO> getAttendById(@PathVariable Long id){
-        AttendDTO aDto = attendService.getAttendById(id);
+    public ResponseEntity<AttendDTO> getAttendDTOById(@PathVariable Long id){
+        AttendDTO aDto = attendService.getAttendDTOById(id);
         return ResponseEntity.ok(aDto);
     }
 
