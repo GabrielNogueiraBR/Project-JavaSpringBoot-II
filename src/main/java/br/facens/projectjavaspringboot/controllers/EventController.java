@@ -106,4 +106,10 @@ public class EventController {
         TicketDTO dto = service.sellTIcket(id,insertDTO);
         return ResponseEntity.ok().body(dto);
     }
+
+    @DeleteMapping("/{id}/tickets")
+    public ResponseEntity<Void> giveBackTicket(@PathVariable Long id, @RequestBody TicketInsertDTO insertDTO){
+        service.giveBackTicket(id,insertDTO);
+        return ResponseEntity.noContent().build();
+    }
 }

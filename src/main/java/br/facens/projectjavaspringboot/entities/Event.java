@@ -100,6 +100,12 @@ public class Event implements Serializable{
         this.tickets.add(ticket);
     }
 
+    public void removeTicket(Ticket ticket){
+        if(this.tickets.contains(ticket)){
+            this.tickets.remove(ticket);
+        }
+    }
+
     public List<Place> getPlaces() {
         return places;
     }
@@ -255,6 +261,17 @@ public class Event implements Serializable{
     public boolean isEventInPast(){
         
         LocalDateTime localDateTime = this.getEndDate().atTime(this.getEndTime());
+        
+        if(localDateTime.isBefore(LocalDateTime.now())){
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isEventBegin(){
+        
+        LocalDateTime localDateTime = this.getStartDate().atTime(this.getStartTime());
         
         if(localDateTime.isBefore(LocalDateTime.now())){
             return true;

@@ -31,7 +31,9 @@ import br.facens.projectjavaspringboot.entities.Event;
 import br.facens.projectjavaspringboot.entities.Place;
 import br.facens.projectjavaspringboot.entities.Ticket;
 import br.facens.projectjavaspringboot.entities.TicketType;
+import br.facens.projectjavaspringboot.repositories.AttendRepository;
 import br.facens.projectjavaspringboot.repositories.EventRepository;
+import br.facens.projectjavaspringboot.repositories.TicketRepository;
 
 @Service
 public class EventService {
@@ -47,6 +49,12 @@ public class EventService {
 
     @Autowired
     private AttendService attendService;
+
+    @Autowired
+    private AttendRepository attendRepository;
+
+    @Autowired
+    private TicketRepository ticketRepository;
 
     public Page<EventDTO> getEvents(
             PageRequest pageRequest, 
@@ -259,6 +267,45 @@ public class EventService {
             else{
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"All tickets " + type.name() + " already selled.");
             }
+        }
+    }
+
+    @Transactional
+    public void giveBackTicket(Long id, TicketInsertDTO insertDTO) {
+        
+        // Validar se o Event existe
+        Event event = getEventById(id);
+
+        // Validar se o Attend existe
+        Attend attend = attendService.getAttendById(insertDTO.getIdAttend());
+
+        // Validar se o Attend possui um Ticket para o Event - Obter o primeiro caso tenha
+        Ticket ticketAttend = new Ticket();
+        for(Ticket ticket : event.getTickets()){
+            if(ticket.getAttend().equals(attend) && ticket.getType() == insertDTO.getType()){
+                ticketAttend = ticket;
+                break;
+            }
+        }
+        if(event.getTickets().contains(ticketAttend)){
+            // Validar se o Event ja comecou
+            if(event.isEventBegin()){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You could not give back ticket because this event already begin.");
+            }
+            else{
+                // Devolver o Ticket
+                event.removeTicket(ticketAttend);
+                // Incrementar o saldo do Attend
+                attend.addBalance(ticketAttend.getPrice());
+
+                // Salvar as entidades modificadas
+                repository.save(event);
+                attendRepository.save(attend);
+                ticketRepository.delete(ticketAttend);
+            }
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"This attend does not have a ticket " + insertDTO.getType() + " for Event.");
         }
     }
 }

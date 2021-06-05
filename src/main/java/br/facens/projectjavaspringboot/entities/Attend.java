@@ -3,7 +3,6 @@ package br.facens.projectjavaspringboot.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -46,6 +45,10 @@ public class Attend extends BaseUser{
 
     public Double getBalance() {
         return balance;
+    }
+
+    public void addBalance(Double balance){
+        this.balance += balance;
     }
 
     public void updateAttend(@Valid AttendUpdateDTO updateDTO) {
