@@ -2,8 +2,11 @@ package br.facens.projectjavaspringboot.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.facens.projectjavaspringboot.entities.Event;
+import br.facens.projectjavaspringboot.entities.Place;
 
 public class EventDTO {
     
@@ -20,6 +23,8 @@ public class EventDTO {
     private Long freeTicketsSelled;
     private Long payedTicketsSelled;
     private Double priceTicket;
+    private AdminDTO admin;
+    private List<PlaceDTO> places = new ArrayList<>();
 
     public EventDTO(){
 
@@ -27,7 +32,7 @@ public class EventDTO {
 
     public EventDTO(Long id, String name, String description, LocalDate startDate, LocalDate endDate,
             LocalTime startTime, LocalTime endTime, String emailContact, Long amountFreeTickets,
-            Long amountPayedTickets, Long freeTicketsSelled, Long payedTicketsSelled, Double priceTicket) {
+            Long amountPayedTickets, Long freeTicketsSelled, Long payedTicketsSelled, Double priceTicket, AdminDTO admin, List<PlaceDTO> places) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -41,6 +46,8 @@ public class EventDTO {
         this.freeTicketsSelled = freeTicketsSelled;
         this.payedTicketsSelled = payedTicketsSelled;
         this.priceTicket = priceTicket;
+        this.admin = admin;
+        this.places = places;
     }
 
     public EventDTO(Event event, Long freeTicketsSelled, Long payedTicketsSelled ){
@@ -57,6 +64,11 @@ public class EventDTO {
         this.freeTicketsSelled = freeTicketsSelled;
         this.payedTicketsSelled = payedTicketsSelled;
         this.priceTicket = event.getPriceTicket();
+        this.admin = new AdminDTO(event.getAdmin());
+        
+        for(Place place : event.getPlaces()){
+            this.places.add(new PlaceDTO(place));
+        }
     }
 
     public Long getId() {
@@ -163,7 +175,20 @@ public class EventDTO {
         this.priceTicket = priceTicket;
     }
 
-    
+    public AdminDTO getAdmin() {
+        return admin;
+    }
 
+    public void setAdmin(AdminDTO admin) {
+        this.admin = admin;
+    }
+
+    public List<PlaceDTO> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(List<PlaceDTO> places) {
+        this.places = places;
+    }
     
 }

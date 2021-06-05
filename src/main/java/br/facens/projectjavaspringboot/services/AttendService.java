@@ -33,17 +33,29 @@ public class AttendService {
         return toDTOList(attendees);
     }
 
-    public AttendDTO getAttendById(Long id) {
+    public AttendDTO getAttendDTOById(Long id) {
         Optional<Attend> opt = attendRepository.findById(id);
         Attend attend = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found"));
 
         return new AttendDTO(attend);
     }
+    
+    public Attend getAttendById(Long id) {
+        Optional<Attend> opt = attendRepository.findById(id);
+        Attend attend = opt.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found"));
+
+        return attend;
+    }
 
     public AttendDTO insert(AttendInsertDTO insertDTO) {
         Attend attend = new Attend(insertDTO);
-        attend = attendRepository.save(attend);
-        return new AttendDTO(attend);
+        try{
+            attend = attendRepository.save(attend);
+            return new AttendDTO(attend);
+        }
+        catch(DataIntegrityViolationException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not insert user with email duplicated.");
+        }
     }
 
     public void deleteAttendById(Long id) {
@@ -67,6 +79,9 @@ public class AttendService {
         }
         catch(EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attend not found");
+        }
+        catch(DataIntegrityViolationException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not update user with email duplicated.");
         }
     }
 

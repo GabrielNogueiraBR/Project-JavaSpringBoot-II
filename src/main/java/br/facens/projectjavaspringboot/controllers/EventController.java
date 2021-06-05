@@ -26,6 +26,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.facens.projectjavaspringboot.dto.EventDTO;
 import br.facens.projectjavaspringboot.dto.EventInsertDTO;
 import br.facens.projectjavaspringboot.dto.EventUpdateDTO;
+import br.facens.projectjavaspringboot.dto.TicketDTO;
+import br.facens.projectjavaspringboot.dto.TicketInsertDTO;
+import br.facens.projectjavaspringboot.dto.TicketsDTO;
 import br.facens.projectjavaspringboot.services.EventService;
 
 
@@ -44,6 +47,7 @@ public class EventController {
         @RequestParam(value = "direction", defaultValue = "ASC") String direction,
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
         @RequestParam(value = "name", defaultValue = "") String name,
+        @RequestParam(value = "address", defaultValue = "") String address,
         @RequestParam(value = "description", defaultValue = "") String description,
         @RequestParam(value = "startDate", defaultValue = "#{T(java.time.LocalDate).now()}") @DateTimeFormat(iso = ISO.DATE) LocalDate startDate
         
@@ -51,13 +55,13 @@ public class EventController {
         
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction.toUpperCase()),orderBy);
 
-        Page<EventDTO> list = service.getEvents(pageRequest, name, description,startDate);
+        Page<EventDTO> list = service.getEvents(pageRequest, name, address, description,startDate);
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<EventDTO> getEventById(@PathVariable Long id) {
-        EventDTO eDto = service.getEventById(id);
+    public ResponseEntity<EventDTO> getEventDTOById(@PathVariable Long id) {
+        EventDTO eDto = service.getEventDTOById(id);
         return ResponseEntity.ok(eDto);
     }
 
@@ -78,5 +82,35 @@ public class EventController {
     public ResponseEntity<EventDTO> update(@PathVariable Long id, @Valid @RequestBody EventUpdateDTO updateDTO){
         EventDTO dto = service.update(id, updateDTO);
         return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping("{idEvent}/places/{idPlace}")
+    public ResponseEntity<EventDTO> addPlace(@PathVariable Long idEvent, @PathVariable Long idPlace){
+        EventDTO dto = service.addPlace(idEvent,idPlace);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping("{idEvent}/places/{idPlace}")
+    public ResponseEntity<EventDTO> removePlace(@PathVariable Long idEvent, @PathVariable Long idPlace){
+        EventDTO dto = service.removePlace(idEvent,idPlace);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @GetMapping("/{id}/tickets")
+    public ResponseEntity<TicketsDTO> getTicketsList(@PathVariable Long id){
+        TicketsDTO dto = service.getTicketsList(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping("/{id}/tickets")
+    public ResponseEntity<TicketDTO> sellTicket(@PathVariable Long id, @RequestBody TicketInsertDTO insertDTO){
+        TicketDTO dto = service.sellTIcket(id,insertDTO);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping("/{id}/tickets")
+    public ResponseEntity<Void> giveBackTicket(@PathVariable Long id, @RequestBody TicketInsertDTO insertDTO){
+        service.giveBackTicket(id,insertDTO);
+        return ResponseEntity.noContent().build();
     }
 }

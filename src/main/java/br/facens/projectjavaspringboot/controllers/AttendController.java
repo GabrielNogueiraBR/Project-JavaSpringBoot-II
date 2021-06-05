@@ -1,7 +1,6 @@
 package br.facens.projectjavaspringboot.controllers;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -48,8 +47,8 @@ public class AttendController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<AttendDTO> getAttendById(@PathVariable Long id){
-        AttendDTO aDto = attendService.getAttendById(id);
+    public ResponseEntity<AttendDTO> getAttendDTOById(@PathVariable Long id){
+        AttendDTO aDto = attendService.getAttendDTOById(id);
         return ResponseEntity.ok(aDto);
     }
 
@@ -71,6 +70,5 @@ public class AttendController {
     public ResponseEntity<AttendDTO> updateAttend(@PathVariable Long id, @Valid @RequestBody AttendUpdateDTO updateDTO){
         AttendDTO attendDTO = attendService.updateAttend(id, updateDTO);
         return ResponseEntity.ok().body(attendDTO);
-
     }
 }

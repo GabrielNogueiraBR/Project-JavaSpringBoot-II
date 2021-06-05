@@ -47,8 +47,13 @@ public class AdminService {
 
     public AdminDTO insert(AdminInsertDTO insertDTO) {
         Admin admin = new Admin(insertDTO);
-        admin = adminRepository.save(admin);
-        return new AdminDTO(admin);
+        try{
+            admin = adminRepository.save(admin);
+            return new AdminDTO(admin);
+        }
+        catch(DataIntegrityViolationException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not insert user with email duplicated.");
+        }
     }
 
     public void deleteAdminById(Long id) {
@@ -72,6 +77,9 @@ public class AdminService {
         }
         catch(EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin not found");
+        }
+        catch(DataIntegrityViolationException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Could not update user with email duplicated.");
         }
     }
 

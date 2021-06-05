@@ -1,5 +1,6 @@
 package br.facens.projectjavaspringboot.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.facens.projectjavaspringboot.dto.PlaceDTO;
 import br.facens.projectjavaspringboot.dto.PlaceInsertDTO;
 import br.facens.projectjavaspringboot.dto.PlaceUpdateDTO;
+import br.facens.projectjavaspringboot.entities.Event;
 import br.facens.projectjavaspringboot.entities.Place;
 import br.facens.projectjavaspringboot.repositories.PlaceRepository;
 
@@ -45,7 +47,14 @@ public class PlaceService {
         return placeDTOs;
     }
 
-    public PlaceDTO getPlaceById(Long id) {
+    public Place getPlaceById(Long id) {
+        Optional<Place> opt = placeRepository.findById(id);
+        Place place = opt.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Place not found"));
+        
+        return place;
+    }
+    
+    public PlaceDTO getPlaceDTOById(Long id) {
         Optional<Place> opt = placeRepository.findById(id);
         Place place = opt.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Place not found"));
         
@@ -100,5 +109,41 @@ public class PlaceService {
     public Page<PlaceDTO> getPagePlaces(PageRequest pageRequest) {
         Page<Place> list = placeRepository.findPlacePageable(pageRequest);
         return list.map(place -> new PlaceDTO(place));
+    }
+
+    public boolean availability(Place place, Event event) {
+        
+        // Start datetime
+        LocalDateTime startDateTime = event.getStartDate().atTime(event.getStartTime());
+        
+        // End datetime
+        LocalDateTime endDateTime = event.getEndDate().atTime(event.getEndTime());
+
+        for (Event event2 : place.getEvents()) {
+            LocalDateTime startDateTime2 = event2.getStartDate().atTime(event2.getStartTime());
+            LocalDateTime endDateTime2 = event2.getEndDate().atTime(event2.getEndTime());
+            
+            if(event2.getId() != event.getId()){
+                if(startDateTime.isAfter(startDateTime2) && startDateTime.isBefore(endDateTime2)){
+                    return false;
+                }
+                else if(startDateTime.isEqual(startDateTime2) || startDateTime.isEqual(endDateTime2)){
+                    return false;
+                }
+                else if(endDateTime.isAfter(startDateTime2) && endDateTime.isBefore(endDateTime2)){
+                    return false;
+                }
+                else if(endDateTime.isEqual(startDateTime2) || endDateTime.isEqual(endDateTime2)){
+                    return false;
+                }
+                else if(startDateTime2.isAfter(startDateTime) && startDateTime2.isBefore(endDateTime)){
+                    return false;
+                }
+                else if(endDateTime2.isAfter(startDateTime) && endDateTime2.isBefore(endDateTime)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

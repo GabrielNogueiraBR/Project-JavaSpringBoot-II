@@ -101,3 +101,30 @@ Para acessar todas as requisições do projeto você pode instalar o Postman e b
         "address": "Rua Estado do Paraná"
     }
     ```
+
+
+ - /events/{id}/tickets
+    ```
+        https://application-poo-ii-springboot.herokuapp.com/events/1/tickets
+    ```
+    Body raw(json)
+    ```
+    {
+        "idAttend": 4,
+        "type": "PAYED"
+    }
+    ```
+
+### <b>DELETE<b>
+
+ - /events/{id}/tickets
+    ```
+        https://application-poo-ii-springboot.herokuapp.com/events/1/tickets
+    ```
+    Body raw(json)
+    ```
+    {
+        "idAttend": 4,
+        "type": "PAYED"
+    }
+    ```

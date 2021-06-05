@@ -12,11 +12,10 @@ public class AttendDTO {
 
     }
 
-    public AttendDTO(Long id, String name, String email, Double balance) {
+    public AttendDTO(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.balance = balance;
     }
 
     public AttendDTO(Attend attend){
@@ -47,9 +46,4 @@ public class AttendDTO {
     public Double getBalance() {
         return balance;
     }
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
-    
 }

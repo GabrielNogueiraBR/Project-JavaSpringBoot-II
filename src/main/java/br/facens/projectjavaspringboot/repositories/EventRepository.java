@@ -14,13 +14,15 @@ import br.facens.projectjavaspringboot.entities.Event;
 public interface EventRepository extends JpaRepository<Event, Long>{
     
     // Montando uma consulta paginada com uma consulta JPQL
-    @Query("SELECT e FROM Event e " +
+    @Query("SELECT DISTINCT e FROM Event e " +
+           "INNER JOIN e.places p " +
            "WHERE " +
            " ( LOWER(e.name)      LIKE   LOWER(CONCAT('%',:name,'%')))  AND " +
            " ( LOWER(e.description) LIKE LOWER(CONCAT('%',:description,'%'))) AND" +
-           " e.startDate >= :startDate"
+           " e.startDate >= :startDate AND " +
+           " (LOWER(p.address) LIKE LOWER(CONCAT('%',:address,'%'))) "
     )
-    public Page <Event> findEventPageable(Pageable pageRequest, String name, String description, LocalDate startDate);
+    public Page <Event> findEventPageable(Pageable pageRequest, String name, String address, String description, LocalDate startDate);
 
 
 }

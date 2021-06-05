@@ -1,9 +1,7 @@
 package br.facens.projectjavaspringboot.controllers;
 
 import java.net.URI;
-import java.util.List;
 
-import javax.servlet.Servlet;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +47,8 @@ public class PlaceController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<PlaceDTO> getPlaceById(@PathVariable Long id){
-        PlaceDTO dto = placeService.getPlaceById(id);
+    public ResponseEntity<PlaceDTO> getPlaceDTOById(@PathVariable Long id){
+        PlaceDTO dto = placeService.getPlaceDTOById(id);
         return ResponseEntity.ok(dto);
     }
 
