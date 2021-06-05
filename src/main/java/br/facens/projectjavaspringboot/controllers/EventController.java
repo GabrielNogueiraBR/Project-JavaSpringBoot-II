@@ -47,6 +47,7 @@ public class EventController {
         @RequestParam(value = "direction", defaultValue = "ASC") String direction,
         @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
         @RequestParam(value = "name", defaultValue = "") String name,
+        @RequestParam(value = "address", defaultValue = "") String address,
         @RequestParam(value = "description", defaultValue = "") String description,
         @RequestParam(value = "startDate", defaultValue = "#{T(java.time.LocalDate).now()}") @DateTimeFormat(iso = ISO.DATE) LocalDate startDate
         
@@ -54,7 +55,7 @@ public class EventController {
         
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction.toUpperCase()),orderBy);
 
-        Page<EventDTO> list = service.getEvents(pageRequest, name, description,startDate);
+        Page<EventDTO> list = service.getEvents(pageRequest, name, address, description,startDate);
         return ResponseEntity.ok(list);
     }
 

@@ -59,11 +59,12 @@ public class EventService {
     public Page<EventDTO> getEvents(
             PageRequest pageRequest, 
             String name, 
-            String description,
+            String address,
+            String description, 
             LocalDate startDate
     ) 
     {
-            Page<Event> list = repository.findEventPageable(pageRequest, name, description,startDate);
+            Page<Event> list = repository.findEventPageable(pageRequest, name,address, description,startDate);
             return list.map(event -> getEventDTOById(event.getId()));
     }
 
