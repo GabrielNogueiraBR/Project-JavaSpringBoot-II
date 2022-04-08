@@ -11,7 +11,7 @@ Criação de uma API, com a utilização do Spring Framework (Spring Boot) e do 
 
 
 ## :zap: Participantes
-- Gabriel Augusto Nogueira (RA: 190961)
+- Gabriel Augusto Nogueira
 
 
 ## :package: Deploy no Heroku
